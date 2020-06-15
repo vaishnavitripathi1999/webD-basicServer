@@ -4,13 +4,57 @@
 const http =require('http');
 //initiallizing th port 
 const port = 8000;
+//for reading a file
+const fs= require('fs');
 
 
 
+//handling the request res and req 
 function reqHandler(req,res){
     console.log(req.url);
-    res.end('hello welcome to my channel');
+
+
+
+//this will read the file 
+
+res.writeHead(200,{'content-type':'text/html'});
+
+let filepath;
+
+switch(req.url){
+
+    case '/' :
+        filepath = './inedx.html';
+        break;
+    
+    case '/profile':
+        filepath = './profile.html';
+        break;
+
+     default:
+         filepath = './404.html';
+        break;
 };
+
+ 
+
+ fs.readFile(filepath,function(err,data){
+
+    if(err){
+        console.log('error',err);
+        return;
+    }
+
+    return res.end(data);
+
+
+ })};
+
+  
+
+
+
+
 
 //creating the server
 const server = http.createServer(reqHandler);
@@ -26,4 +70,5 @@ server.listen(port,function(err){
 
     console.log('the server is running on port',port );
 
-})
+});
+
