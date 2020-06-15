@@ -9,6 +9,7 @@ const port = 8000;
 
 function reqHandler(req,res){
     console.log(req.url);
+    res.end('hello welcome to my channel');
 };
 
 //creating the server
