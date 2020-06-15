@@ -5,8 +5,14 @@ const http =require('http');
 //initiallizing th port 
 const port = 8000;
 
+
+
+function reqHandler(req,res){
+    console.log(req.url);
+};
+
 //creating the server
-const server = http.createServer();
+const server = http.createServer(reqHandler);
 
 
 //telling the port ot listen on the server and telling the error
